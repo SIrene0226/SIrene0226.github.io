@@ -1,0 +1,193 @@
+.BigTitle{
+    width: 60%;
+    height: 100%;
+    /* background-color: #aff; */
+    text-align: center;
+    padding: 10px;
+    line-height: 30px;
+    margin: 0 auto 30px;
+}
+.BigTitle h1{
+    /* width: 60%; */
+    /* display: inline-block; */
+    font-size: 30px;
+    padding: 5px;
+}
+.BigTitle .nav{
+    /* width: 60%; */
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+.BigTitle .nav button{
+    border: 1px solid rgb(155, 155, 155);
+    font-size: 18px;
+    width: 200px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.container:nth-child(even){
+    width: 61%;
+    min-height: 700px;
+    height: auto;
+    margin: 0 auto 130px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: center;
+}
+.container:nth-child(odd){
+    width: 61%;
+    min-height: 700px;
+    height: auto;
+    margin: 0 auto 130px;
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    justify-content: center;
+    overflow: visible;
+}
+.container:nth-child(even) .box{
+    /* width: 100%; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: flex-start;
+    z-index: 2;
+}
+.container:nth-child(odd) .box{
+    /* width: 100%; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    z-index: 2;
+}
+.reason{
+    width: 400px;
+    color: white;
+    /* margin-bottom: 250px; */
+}
+.container:nth-child(even) .reason .title{
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(150, 0, 0);
+    align-items: center;
+} 
+.container:nth-child(odd) .reason .title{
+    height: auto;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    background-color: rgb(150, 0, 0);
+    align-items: center;
+} 
+.reason .title p{
+    padding: 0;
+    font-size: 100px;
+    transform: rotate(0.25turn);
+}
+.reason .title h2{
+    padding: 10px;
+    font-size: 60px;
+}
+.reason .describe{
+    padding: 15px;
+    line-height: 1.5em;
+    font-size: 20px;
+    background-color: #000;
+}
+.reason .describe h3{
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.explain{
+    height: auto;
+    width: 800px;
+    font-size: 20px;
+    background-color: rgb(224, 224, 224);
+    margin-left: 50px;
+    padding: 15px;
+    position:absolute;
+    bottom: 0;
+}
+.explain h3{
+    color: rgb(150, 0, 0);
+    margin: 0 0 10px 0;
+}
+.explain content p{
+    font-size: 16px;
+    display: inline-block;
+    margin: 5px auto;
+    padding: 5px;
+    background-color: rgb(53, 53, 53);
+    color: white;
+}
+.explain content li{
+    color: rgb(102, 102, 102);
+    list-style: none;/*要先把不要的去掉先，如果没有去掉就会出现2个点点*/
+}
+.explain content li::before{/*建立新的点点*/
+    content: "• ";
+    color: tomato;
+}
+
+.container:nth-child(even) .bgImg{
+    width: 800px;
+    height: 500px;
+    background-image: url(ToyotaImg/OvnjcDAfH9U7AMv.jpg);
+    background-size: cover;
+    justify-self: center;
+    position: absolute;
+    right: 70px;
+    top: 100px;
+    z-index: 1;
+}
+.container:nth-child(odd) .bgImg{
+    width: 800px;
+    height: 500px;
+    background-image: url(ToyotaImg/OvnjcDAfH9U7AMv.jpg);
+    background-size: cover;
+    justify-self: center;
+    position: absolute;
+    left: 20px;
+    top: 100px;
+    z-index: 1;
+}
+.container:nth-child(even) .bgImg .yt{
+    width: 70px;
+    height: 50px;
+    position:absolute;
+    right:-20px;
+    top: 50%;
+}
+.container:nth-child(odd) .bgImg .yt{
+    width: 70px;
+    height: 50px;
+    position:absolute;
+    left:-20px;
+    bottom: 50%;
+}
+.bgImg .yt img{
+    width: 70px;
+    height: 60px;
+}
+
+.container:nth-child(even) .empty{
+    width: 600px;
+    height: 350px;
+    margin: 40px 0 auto auto;
+    background-color: rgb(224, 224, 224);
+}
+.container:nth-child(odd) .empty{
+    width: 600px;
+    height: 350px;
+    margin: 40px auto auto 500px;
+    background-color: rgb(224, 224, 224);
+}

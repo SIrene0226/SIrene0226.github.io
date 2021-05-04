@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Imperion</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .unvisible{
+            font-size: 1px;
+            line-height: 0;
+            opacity: 0;
+        }
+        .home{
+            /* width: 100%; */
+            /* height: 1000px; */
+            background-image: url(https://ld-wp.template-help.com/wordpress_imperion/finance_v1/wp-content/uploads/2017/11/finance-skin-slider-2.jpg);
+
+            background-size: cover;/*把背景图片填满我设定的长高*/
+        }
+        .home .header{
+            padding: 25px 0;
+            height: 120px;
+            text-align: center;
+            /* background-color: #ccc; */
+            background: rgba(43,44,50,0.5);
+        }
+        .home .header .logo{
+            margin: 15px 0 30px;
+            justify-content: center;
+        }
+        .home .header .logo h1{
+            font-size: 1px;
+            opacity: 0;
+        }
+        .home .header .logo img{
+            vertical-align: middle;/*和文字垂直置中*/
+        }
+        .home .header .logo nav{
+            display: flex;
+            /* background-color: #aaa; */
+            margin: auto;
+        }
+        .home .header nav a{
+            text-decoration: none;
+            margin: 15px;
+            color: whitesmoke     }
+
+        .slogan{
+            height: 600px;
+            /* width: 50%; */
+            /* background-color: #ffa; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 20%;
+            color: whitesmoke     }
+        .slogan h2{
+            font-size: 80px;
+        }
+        .slogan h4{
+            font-size: 25px;
+        }
+
+        .present{
+            width: 60%;
+            height: 150px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* background-color: #aaf; */
+        }
+        .present .item{
+            width: 300px;
+            color: whitesmoke     
+        }
+        .present .item h3{
+            display: inline;
+            font-size: 25px;
+            padding: 5px;
+        }
+        .present .item img{
+            vertical-align: middle;
+        }
+        .present .item p{
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        .adv{
+            height: 300px;
+            display: flex;
+            margin: 0 auto;
+            align-items: center;
+            /* background-color: #aaa; */
+            padding: 0 15%;
+        }
+        .adv h2{
+            width: 30%;
+            font-size: 45px;
+            padding: 0 15px;
+        }
+        .adv p{
+            width: 60%;
+            font-size: 20px;
+            column-count: 2;
+            column-gap: 50px;
+            border-left: 2px solid gray;
+            padding: 0 0 0 30px;
+        }
+        .adv p:first-letter{
+            color:rgb(190, 170, 113);
+            font-size: 50px;
+            float: left;
+            /* vertical-align:text-top; */
+        }
+
+        .unleash{
+            height: 300px;
+            display: flex;
+            margin: 0 auto;
+            align-items: center;
+            background-color: rgb(190, 170, 113);
+            padding: 0 15%;
+            justify-content: space-between;
+        }
+        .unleash button{
+            width: 160px;
+            height: 50px;
+            border-radius: 5px;
+            border: 0;
+        }
+        .unleash button:hover{
+            background-color: rgb(177, 166, 153);
+        }
+        .unleash .left{
+            font-size: 25px;
+            color: whitesmoke;
+        }
+
+        .reason{
+            height: 900px;
+            /* background-color: red; */
+        }
+        .reason .txt{
+            width: 33%;
+            margin: 30px auto 50px;
+            text-align: center;
+        }
+        .reason .txt h2{
+            font-size: 40px;
+            margin: 20px 0;
+            padding: 20px;
+            color: rgb(44, 44, 44);
+        }
+        .reason .txt span{
+            color: rgb(190, 170, 113);
+        }
+        .reason .txt p{
+            color: rgb(44,44,44);
+            font-size: 20px;
+        }
+        .reason .list{
+            width: 80%;
+            display: flex;
+            margin: auto;
+            justify-content: space-evenly;
+            align-items: center;
+            /* background-color: #aaa; */
+        }
+        .reasonList.left .reasons{
+            /* width: 70%; */
+            display: flex;
+            flex-direction: row-reverse;
+            text-align: right;
+            align-items: center;
+            align-content: space-around;
+            margin: 70px 10px;
+        }
+        .list .reasons img{
+            /* width: 20%; */
+            margin: 0 20px;
+        }
+        .reasonList.right .reasons{
+            /* width: 70%; */
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-content: space-around;
+            margin: 70px 10px;
+        }
+        .reasons div{
+            width: 300px;
+            font-size: 20px;
+            /* background-color: aqua; */
+        }
+        .reasons h3{
+            color: rgb(190, 170, 113);
+        }
+
+        .fourAchie{
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("https://ld-wp.template-help.com/wordpress_imperion/finance_v1/wp-content/uploads/2017/11/counter-bg.jpg");
+            /* background-color: #aff; */
+            background-size: cover;
+            filter: grayscale();/*把background的东西（img/color）调filter*/
+            opacity: 0.8;
+        }
+        .fourAchie .achies{
+            width: 150px;
+            padding: 10px;
+            margin: 30px;
+            text-align: center;
+            font-size: 25px;
+            color: rgb(0, 0, 0);
+        }
+
+        .container{
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: #aaf; */
+        }
+        .container .boxTxt{
+            width: 450px;
+            height: 400px;
+            display: flex;
+            margin: 0 30px;
+            flex-direction: column;
+            justify-content: space-evenly;
+            font-size: 20px;
+            background-color: #fff;
+        }
+        .container .boxTxt span{
+            color: burlywood;
+        }
+        .container .boxTxt p{
+            color: rgb(31, 30, 30);
+        }
+        .container .boxTxt li{
+            line-height: 30px;
+        }
+        .container .box{
+            width: 800px;
+            height: 400px;
+            margin: 0 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            /* background-color: #aff; */
+            align-items: center;
+        }
+        .container .box .progressBar{
+            height: 62px;
+            width: 620px;
+            margin-bottom: 10px;
+            padding: 8px 30px;
+            /* background-color: #aaa; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            /* align-items: ; */
+            align-content: center;
+        }
+        .container .box .progressBar .bar{
+            width: 620px;
+            height: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            /* background-color: #fff; */
+        }
+        .container .box .progressBar .bar .color{
+            height: 100%;
+            border-radius: 5px;
+            background-color: rgb(192, 157, 111);
+        }
+        .container .box .progressBar .bar .color.FS{
+            width: 87%;
+        }
+        .container .box .progressBar .bar .color.BS{
+            width: 75%;
+        }
+        .container .box .progressBar .bar .color.CP{
+            width: 63%;
+        }
+        .container .box .progressBar .bar .color.EE{
+            width: 50%;
+        }
+
+        .project{
+            height: 100px;
+            background-color: rgb(216, 216, 216);
+            text-align: center;
+            align-items: center;
+            padding: 100px 0;
+            font-size: 25px;
+        }
+        .project span{
+            color: burlywood;
+        }
+        .project nav{
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            list-style-type: none;/*remove the dot infront of list items*/
+            color: rgb(43, 42, 42);
+        }
+        .project nav li{
+            margin: 10px 15px;
+        }
+
+        .testimonials{
+            height: 200px;
+            text-align: center;
+            line-height: 1;
+            font-size: 30px;
+            padding: 120px 0;
+            /* background-color: blue; */
+        }
+        .testimonials span{
+            color: burlywood;
+        }
+        .testimonials .dot{
+            width: 10%;
+            margin: 100px auto 0;
+            display: flex;
+            justify-content: space-evenly;
+            /* background-color: #fff; */
+        }
+        .testimonials .dot div{
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: burlywood;
+        }
+
+        .staf{
+            display: flex;
+        }
+        .staf .box.person{
+            width: 50%;
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-content: center;
+        }
+        .staf .box.person .container{
+            display: flex;
+            flex-direction: row;
+            justify-content: stretch;
+            padding-left: 30%;
+            background-color: rgb(37, 37, 37);
+            color: whitesmoke;
+            line-height: 2em;
+        }
+        .staf .box.person .container .item{
+            margin: 40px;
+        }
+        .staf .box.person .container .item p:first-child{
+            font-size: 15px;
+        }
+        .staf .box.person .container .item h3{
+            font-size: 30px;
+            line-height: 2em;
+        }
+        .staf .box.infomation{
+            width: 50%;
+            height: 700px;
+            padding-left: 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: rgb(218, 218, 218);
+        }
+        .staf .box.infomation h2{
+            font-size: 40px;
+        }
+        .staf .box.infomation span{
+            color: rgb(206, 170, 123);
+        }
+        .staf .box.infomation .container{
+            width: 650px;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+            /* background-color: #faa; */
+        }
+        .staf .box.infomation .container .info{
+            width: 300px;
+            margin: 20px 20px 20px 0;
+            display: flex;
+            flex-direction: column;
+            font-size: 20px;
+        }
+        .staf .box.infomation .container .info .office{
+            margin-bottom: 50px;
+        }
+        .staf .box.infomation .container .info .office h4{
+            margin-bottom: 20px;
+        }
+        .staf .box.infomation .container .info .hour{
+            margin-bottom: 50px;
+        }
+        .staf .box.infomation .container .info .hour h4{
+            margin-bottom: 20px;
+        }
+        .staf .box.infomation .container .info .office a{
+            display: block;
+            text-decoration: none;
+            color: rgb(206, 170, 123);
+        }
+
+        .email{
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(196, 174, 116);
+        }
+        .email h2{
+            font-size: 35px;
+            color: cornsilk;
+            padding-right: 50px;
+        }
+        .email .input{
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        .email .input input{
+            width: 500px;
+            height: 40px;
+            border: 0;
+            background-color: rgb(129, 108, 69);
+            color: white;
+        }
+        ::placeholder{/*改变input里面placeholder的东西*/
+            color: white;
+        }
+        .email .input button{
+            width: 100px;
+            height: 40px;
+            border: 0;
+        }
+        .email .input button:hover{
+            background-color: rgb(177, 166, 153);
+        }
+
+        footer{
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 2.5em;
+        }
+        footer p{
+            display: inline;
+        } 
+        footer a{
+            text-decoration: none;
+            color: tan;
+        } 
+        footer .email{
+            background-color: white;
+            height: auto;
+        }
+        footer .media{
+            width: 350px;
+            display: flex;
+            flex-direction: row;
+            margin: 10px;
+            justify-content: space-evenly;
+        }
+        footer .media div{
+            height: 40px;
+            width: 40px;
+            background-color: tan;
+            border-radius: 50%;
+        }
+        footer .media div:hover{
+            background-color: rgb(97, 92, 86);
+        }
+        footer .media div button{
+            width: 40px;
+            height: 40px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="home">
+        <div class="header">
+            <div class="logo">
+                <img src="https://ld-wp.template-help.com/wordpress_imperion/finance_v1/wp-content/themes/imperion/skins/finance/assets/images/invert-logo.png">
+                <h1>IMPERION</h1>
+            </div>
+            <nav>
+                <a href="#">HOME</a>
+                <a href="#">PAGES</a>
+                <a href="#">FEATURE</a>
+                <a href="#">NEW</a>
+                <a href="#">SHOP</a>
+            </nav>
+        </div>
+        <div class="slogan">
+            <h2>The Power</h2>
+            <h4>OF IMAGINATION MAKES US INFINITE</h4>
+        </div>
+        <div class="present">
+            <div class="item">
+                <div class="smallTitle">
+                    <img src="https://fakeimg.pl/70x70/#ffa">
+                    <h3>DEVELOPMENT</h3>
+                </div>
+                <P>We work alongside national and international organizations.</P>
+            </div>
+            <div class="item">
+                <div class="smallTitle">
+                    <img src="https://fakeimg.pl/70x70/#ffa">
+                    <h3>INTEGRATION</h3>
+                </div>
+                <P>Committed to conducting its business according to the highest...</P>
+            </div>
+            <div class="item">
+                <div class="smallTitle">
+                    <img src="https://fakeimg.pl/70x70/#ffa">
+                    <h3>RESPONSIBILITY</h3>
+                </div>
+                <P>Responsible customer relations through clear communication...</P>
+            </div>
+        </div>
+    </div>
+
+    <section class="adv">
+        <h2>Looking for a First-Class Business Plan</h2>
+        <p>We’re a financial and consulting business company of professional thinkers, strategists, digital innovators, designers and problem solvers (everyone gets a mention). Our sense of curiosity brings thinkers, strategists, digital innovators, designers and problem solvers (everyone gets a mention). Our sense of curiosity brings brands to life, gets them talking, and makes sure they’re heard above.</p>
+    </section>
+    
+    <section class="unleash">
+        <div class="left">
+            <h2>Unleash Your Team’s Productive Power</h2>
+            <p>The truly scarce resources now are the time, the talent, and the energy of the people.</p>
+        </div>
+        <button>GET IN TOUCH</button>
+    </section>
+
+    <section class="reason">
+        <div class="txt">
+            <h2>Why Traders <span>Choose Us</span></h2>
+            <p>With a community of over 400 million users (and a majority age group being 18 to 29), wouldn’t you want to make sure you’re monitoring what people are posting on social networks? Especially if the demographic of your audience falls in that age range.</p>
+        </div>
+        <div class="list">
+            <div class="reasonList left">
+                <div class="reasons">
+                    <img src="https://fakeimg.pl/70x70/#aff">
+                    <div>
+                        <h3>VISIT</h3>
+                        <p>Our values and ideals are our decision making guide.</p>
+                    </div>
+                </div>
+                <div class="reasons">
+                    <img src="https://fakeimg.pl/70x70/#aff">
+                    <div>
+                        <h3>SAVE</h3>
+                        <p>We only release our products when we feel they meet our standards.</p>
+                    </div>
+                </div>
+                <div class="reasons">
+                    <img src="https://fakeimg.pl/70x70/#aff">
+                    <div>
+                        <h3>EXPLORE</h3>
+                        <p>We rely on the same platform and tools our customers pay us for</p>
+                    </div>
+                </div>
+            </div>
+
+            <img src="https://ld-wp.template-help.com/wordpress_imperion/finance_v1/wp-content/uploads/2017/11/imperion_finance_phone.png" alt="phoneDisplay">
+
+            <div class="reasonList right">
+                <div class="reasons">
+                    <img src="https://fakeimg.pl/70x70/#aff">
+                    <div>
+                        <h3>ORGANIZE</h3>
+                        <p>Beautiful products to help people with creative ideas succeed</p>
+                    </div>
+                </div>
+                <div class="reasons">
+                    <img src="https://fakeimg.pl/70x70/#aff">
+                    <div>
+                        <h3>COMMUNICATE</h3>
+                        <p>Creative, stylish, and easy-to-manage online presence.</p>
+                    </div>
+                </div>
+                <div class="reasons">
+                    <img src="https://fakeimg.pl/70x70/#aff">
+                    <div>
+                        <h3>SHARE</h3>
+                        <p>Share stories and create an impactful online presence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h2 class="unvisible">Achievement</h2>
+    <div class="fourAchie">
+        
+        <div class="achies">
+            <img src="https://fakeimg.pl/50x50/#fff">
+            <h3>2007</h3><!-- 通常不会要用“数字”来做标题（做seo出来的效果非常差）-->
+            <p>COMPANY ESTABLISHED</p>
+        </div>
+        <div class="achies">
+            <img src="https://fakeimg.pl/50x50/#fff">
+            <h3>426</h3>
+            <p>PROJECTS DONE</p>
+        </div>
+        <div class="achies">
+            <img src="https://fakeimg.pl/50x50/#fff">
+            <h3>45+</h3>
+            <p>BUSINESS PARTHNERS</p>
+        </div>
+        <div class="achies">
+            <img src="https://fakeimg.pl/50x50/#fff">
+            <h3>1510</h3>
+            <p>HAPPY CLIENTS</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="boxTxt">
+            <h2>What We <span>Are Good At</span></h2>
+            <p>With a community of over 400 million users (and a majority age group being 18 to 29), wouldn’t you want to make sure you’re monitoring what people are posting on social networks?</p>
+            <ul><!-- 因为*里面只有m&p 所以这边的li的点点跑出去了 所以尽量不要用* 直接去用参考最完整的css-reset！
+                为了解决只有* 的问题 可以再加个line-style:none;-->
+                <li>Article and News research</li>
+                <li>Company and Industry Research</li>
+                <li>Industry Research and Market Research</li>
+                <li>Market Analysis Report</li>
+            </ul>
+        </div>
+
+        <h2 class="unvisible">Our Advantage</h2>
+        <div class="box">
+            <div class="progressBar">
+                <h3>FINANCIAL SERVICES</h3>
+                <p>87%</p>
+                <div class="bar">
+                    <div class="color FS"></div>
+                </div>
+            </div>
+            <div class="progressBar">
+                <h3>BUSINESS SERVICES</h3>
+                <p>75%</p>
+                <div class="bar">
+                    <div class="color BS"></div>
+                </div>
+            </div>
+            <div class="progressBar">
+                <h3>CONSUMER PRODUCTS</h3>
+                <p>63%</p>
+                <div class="bar">
+                    <div class="color CP"></div>
+                </div>
+            </div>
+            <div class="progressBar">
+                <h3>ENERGY AND ENVIROMENT</h3>
+                <p>50%</p>
+                <div class="bar">
+                    <div class="color EE"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="project">
+        <h2>Our Latest <span>Projects</span></h2>
+        <nav>
+            <li>ALL</li>
+            <li>ADVANCED ANALYTICS</li>
+            <li>CORPORATE FINANCE</li>
+            <li>DIGITAL</li>
+            <li>ORGANIZATION</li>
+            <li>PRIVATE EQUITY</li>
+            <li>STRATEGY</li>
+            <li>STRATEGY & MARKETING</li>
+        </nav>
+        <div></div>
+    </div>
+
+    <div class="testimonials">
+        <h2>Clients <span>Testimonials</span></h2>
+        <div class="dot">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <h2 class="unvisible">staf</h2>
+    <div class="staf">
+        <div class="box person">
+            <div class="container">
+                <img src="https://ld-wp.template-help.com/wordpress_imperion/finance_v1/wp-content/uploads/2017/10/team-12-250x222.jpg" alt="Sarah Johnson">
+                <div class="item">
+                    <p>CEO, OWNER</p>
+                    <h3>Sarah Johnson</h3>
+                    <ul>
+                        <li>+ 800 123 45 70</li>
+                        <li>info@imperion.com</li>
+                        <li>sarah.johnson</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container">
+                <img src="https://ld-wp.template-help.com/wordpress_imperion/finance_v1/wp-content/uploads/2017/07/team-7-250x222.jpg" alt="Sarah Johnson">
+                <div class="item">
+                    <p>MARKETING DEPARTMENT</p>
+                    <h3>Irene Doe</h3>
+                    <ul>
+                        <li>+ 800 123 45 85</li>
+                        <li>info@imperion.com</li>
+                        <li>irene.deo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="box infomation">
+            <h2>Our <span>Offices</span></h2>
+            <div class="container">
+                <div class="info">
+                    <div class="office">
+                        <h4>HEAD OFFICE#1</h4>
+                        <p>4096 N Highland St, ArlingtonVA 32101, USA</p>
+                        <a href="#">imperion@company.com</a>
+                        <a href="#">800 1234 56 78</a>
+                    </div>
+                    <div class="hour">
+                        <h4>BUSINESS HOURS</h4>
+                        <p>Mon-Thu: 9:30-21:00</p>
+                        <p>Fri: 6:00-21:00</p>
+                        <p>Sat: 10:00-15:00</p>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="office">
+                        <h4>HEAD OFFICE#2</h4>
+                        <p>4096 N Highland St, ArlingtonVA 32101, USA</p>
+                        <a href="#">imperion@company.com</a>
+                        <a href="#">800 1234 56 78</a>
+                    </div>
+                    <div class="hour">
+                        <h4>BUSINESS HOURS</h4>
+                        <p>Mon-Thu: 9:30-21:00</p>
+                        <p>Fri: 6:00-21:00</p>
+                        <p>Sat: 10:00-15:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="email">
+        <h2>Stay Always In Touch</h2>
+        <div class="input">
+            <input type="email" placeholder="    Your Email Address"> 
+            <button>SUBSCRIBE</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Address: 4096 N Highland St, Arlington VA 32101, USA</p>
+        <div class="email">
+            <p>Email: </p><a href="#"> imperion@company.com</a>
+        </div>
+        <div class="phone">
+            <p>Phone: </p><a href="#">800 1234 56 78</a>
+        </div>
+        <div class="media">
+            <div class="in">
+                <a href="#"><button></button></a>
+            </div>
+            <div class="twitter">
+                <a href="#"><button></button></a>
+            </div>
+            <div class="fb">
+                <a href="#"><button></button></a>
+            </div>
+            <div class="ig">
+                <a href="#"><button></button></a>
+            </div>
+        </div>
+        <div class="cr">&COPY;2021 Imperion.All Rights Reserved.</div>
+    </footer>
+</body>
+</html > 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map google地圖</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_7kVvaw-LWclxkQ02-UoPXYzXhFDnR3w&callback=initMap&libraries=&v=weekly"
+    async
+    ></script>
+
+    <script>
+        const url = 'https://raw.githubusercontent.com/taihochan/JsonData/main/%E5%8F%B0%E7%81%A3%E8%A1%8C%E6%94%BF%E5%9C%B0%E5%8D%80.json';
+        let xhrTaiwan = new XMLHttpRequest();
+        let mapList=[];//用來接xhrTaiwan裡面的資料
+
+        const url2 = 'https://raw.githubusercontent.com/taihochan/JsonData/main/%E5%8F%B0%E7%81%A3%E8%87%AA%E4%BE%86%E6%B0%B4%E7%94%A8%E9%87%8F.json';
+        let xhrWater=new XMLHttpRequest();
+        let H2Olist=[];
+
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 7,
+                center: {lat: 24.760004505135722, lng: 120.95301376005368},
+            });
+
+            xhrTaiwan.onload=function(){
+                if((xhrTaiwan.readyState==4 && xhrTaiwan.status==200) && (xhrTaiwan.readyState==4 && xhrTaiwan.status==200)){
+                    mapList=JSON.parse(this.responseText);
+                    // console.log(mapList);
+
+                    mapList.forEach((local,index)=>{
+                        new google.maps.Marker({
+                            position: {lat:local.Lat, lng:local.Lng},//红标的位置
+                            map,//标记地图
+                            title: `${local.City} ${local.District}`,//移到红标要显示的讯息
+                        });
+                    })
+                }
+                else{
+                    alert("發生錯誤，HTTP response代碼：" + xhrTaiwan.status );
+                }
+            }
+            xhrTaiwan.open('GET',url);
+            xhrTaiwan.send();
+            xhrWater.open('GET',url2);
+            xhrWater.send();
+        }
+    </script>
+</body>
+</html>

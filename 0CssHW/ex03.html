@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多層次收合選單</title>
+    <!-- 就是裡面用ul包ul，幾層就用幾個！ -->
+    <!-- 這個是可以直接用font-awseome的script！ -->
+    <script src="https://use.fontawesome.com/d3a245347e.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        html,body{
+            height: 100%;
+        }
+        body{
+            background-color: #546377;
+        }
+
+        .sideMenu{
+            width: 300px;
+            height: 100%;
+            background-image: linear-gradient(90deg,#3381b0,#c2196c);
+            display: flex;
+            flex-direction: column; 
+            padding: 50px 0;
+            box-sizing: border-box;
+            box-shadow: 5px 0 10px hsla(240, 40%, 20%, .6);
+            position: relative;
+            transform: translate(-100%);
+            transition: .3s;
+        }
+        .sideMenu form{
+            display: flex;
+            margin: 0 10px 50px;
+            border-radius: 100px;
+            border: 1px solid rgb(255, 255, 255,.4);
+        }
+        .sideMenu form input,
+        .sideMenu form button{
+            border: none;
+            padding: 5px 10px;
+            background-color: transparent;
+            color: white;
+        }
+        .sideMenu form input{
+            width: 230px;
+        }
+        .sideMenu form button{
+            width: 50px;
+        }
+        .sideMenu form input:focus,
+        .sideMenu form button:focus{
+            outline: none;
+        }
+        .sideMenu form input::placeholder{
+            color: rgb(223, 222, 222);
+        }     
+        .sideMenu label{
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            background-color: #000;
+            color: white;
+            right: -40px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            line-height: 80px;
+            text-align: center;
+            font-size: 30px;
+            border-radius: 0px 10px 10px 0;
+        }
+        #side-menu-switch{
+            position: absolute;
+            opacity: 0;
+        }
+        #side-menu-switch:checked + .sideMenu{
+            transform: translate(0);
+        }
+        #side-menu-switch:checked + .sideMenu label .fa{
+            transform: scaleX(-1);
+        }
+
+        .nav a{
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            position: relative;
+        }
+        .nav li{
+            position: relative;/*要讓底下的ul去定位它*/
+        }
+        .nav li + li a::before{/*因為結構被改變了 所以先跳出不來（.nav a + a::before）*/
+            border-top: 1px solid rgb(255, 255, 255,.4);
+            content: '';
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            top: 0;
+        }
+        .nav a .fa{
+            margin-right: -1.1em;
+            transform: scale(0);
+            transition: .5s;            
+        }
+        .nav li:hover .fa{/*原本只有.nav a:hover .fa 是只有a被選到的時候才會出現，現在我改成只要裡面的li有被選到都要出現icon*/
+            margin-right: 0em;
+            transform: scale(1);
+        }
+
+        /*  因為這樣有個問題就是灰色的框框會一直跑掉，我想要選到的 父層級 灰色要保持著要怎麼辦？
+        .nav a:hover{
+            當摸到任何的選單又要出現一個灰色的框框
+            background-color: rgba(0,0,0,.3);
+        } */
+        /*這就是 當我的li被選單的時候，只對（>）底下的a去做改變*/
+        .nav li:hover > a{
+            background-color: rgba(0,0,0,.3);
+        }
+        
+        .nav ul{
+            display: none;/*一開始不要出現*/
+            position: absolute;
+            left: 100%;
+            width: 300px;
+            top: 6px;/*為什麼不設0：因為這樣它就會和父層級的線太對準了，所以對於設計會再做一些偏移*/
+            background-color: rgba(255,255,255,.2);
+            box-shadow: 5px 5px 10px hsla(240, 40%, 15%, .6);
+        }
+        .nav li:hover > ul{/*只有那層li被摸到後 裡面底下的的ul（一層）才會出現*/
+            display: block;
+        }
+        /*為了把所有ul裡面的 第一個 li 底下的a去做改變
+            就是我不要裡面子項目的最上面還有線出現*/
+        ul li:first-child>a::before{
+            border-top: 0px;
+            content: '';
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox" name="" id="side-menu-switch">
+    <div class="sideMenu">
+        <form>
+            <input type="search" placeholder="Type Something...">
+            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+        <!-- 吧原本nav改成ul，名字去nav的話上面css 修改就會比較快！ -->
+        <ul class="nav">
+            <li>
+                <a href="#">
+                    <i class="fa fa-handshake-o" aria-hidden="true"></i> 鐵人賽
+                </a>
+                <ul>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-anchor" aria-hidden="true"></i> 暴力班
+                </a>
+                <ul>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-id-card" aria-hidden="true"></i> RWD
+                </a>
+                <ul>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-internet-explorer" aria-hidden="true"></i>  網頁
+                </a>
+                <ul>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-scissors" aria-hidden="true"></i>  切板
+                </a>
+                <ul>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">一些選單</a>
+                        <ul>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                            <li><a href="#">更多選單</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+
+        <label for="side-menu-switch">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </label>
+    </div>
+</body>
+</html>

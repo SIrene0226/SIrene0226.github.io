@@ -1,0 +1,29 @@
+/* #carouselCaptions .carousel-indicators button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+} */
+.carousel-item{
+    height: 90vh;
+}
+.carousel-caption{
+    right: auto;
+    left: 15%;
+    top: 26%;
+    font-size: 30px;
+    text-align: left;
+}
+.carousel-caption h1{
+    font-size: 100px;
+}
+.carousel-caption p:last-child{
+    font-size: 16px;
+    margin-left: 80px;
+    position: relative;
+}
+.carousel-control-prev{
+    /* position: absolute; */
+    left: 0;
+    bottom: 0;
+}

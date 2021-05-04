@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cssRest.css">
+    <style>
+        .BigTitle{
+    width: 60%;
+    height: 100%;
+    /* background-color: #aff; */
+    text-align: center;
+    padding: 10px;
+    line-height: 30px;
+    margin: 0 auto 30px;
+}
+.BigTitle h1{
+    /* width: 60%; */
+    /* display: inline-block; */
+    font-size: 30px;
+    padding: 5px;
+}
+.BigTitle .nav{
+    /* width: 60%; */
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+.BigTitle .nav button{
+    border: 1px solid rgb(155, 155, 155);
+    font-size: 18px;
+    width: 200px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.container{
+    width: 61%;
+    min-height: 700px;
+    height: auto;
+    margin: 0 auto 130px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: center;
+}
+.container:nth-child(odd){
+    width: 61%;
+    min-height: 700px;
+    height: auto;
+    margin: 0 auto 130px;
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    justify-content: center;
+    overflow: visible;
+}
+.container .box{
+    /* width: 100%; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: flex-start;
+    z-index: 2;
+}
+.container:nth-child(odd) .box{
+    /* width: 100%; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    z-index: 2;
+}
+.reason{
+    width: 400px;
+    color: white;
+    /* margin-bottom: 250px; */
+}
+.container .reason .title{
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(150, 0, 0);
+    align-items: center;
+} 
+.container:nth-child(odd) .reason .title{
+    height: auto;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    background-color: rgb(150, 0, 0);
+    align-items: center;
+} 
+.reason .title p{
+    padding: 0;
+    font-size: 100px;
+    transform: rotate(0.25turn);
+}
+.reason .title h2{
+    padding: 10px;
+    font-size: 60px;
+}
+.reason .describe{
+    padding: 15px;
+    line-height: 1.5em;
+    font-size: 20px;
+    background-color: #000;
+}
+.reason .describe h3{
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.explain{
+    height: auto;
+    width: 800px;
+    font-size: 20px;
+    background-color: rgb(224, 224, 224);
+    margin-left: 50px;
+    padding: 15px;
+    position:absolute;
+    bottom: 0;
+}
+.explain h3{
+    color: rgb(150, 0, 0);
+    margin: 0 0 10px 0;
+}
+.explain content p{
+    font-size: 16px;
+    display: inline-block;
+    margin: 5px auto;
+    padding: 5px;
+    background-color: rgb(53, 53, 53);
+    color: white;
+}
+.explain content li{
+    color: rgb(102, 102, 102);
+    list-style: none;/*要先把不要的去掉先，如果没有去掉就会出现2个点点*/
+}
+.explain content li::before{/*建立新的点点*/
+    content: "• ";
+    color: tomato;
+}
+
+.container .bgImg{
+    width: 800px;
+    height: 500px;
+    background-image: url(ToyotaImg/OvnjcDAfH9U7AMv.jpg);
+    background-size: cover;
+    justify-self: center;
+    position: absolute;
+    right: 70px;
+    top: 100px;
+    z-index: 1;
+}
+.container:nth-child(odd) .bgImg{
+    width: 800px;
+    height: 500px;
+    background-image: url(ToyotaImg/OvnjcDAfH9U7AMv.jpg);
+    background-size: cover;
+    justify-self: center;
+    position: absolute;
+    left: 20px;
+    top: 100px;
+    z-index: 1;
+}
+.container .bgImg .yt{
+    width: 70px;
+    height: 50px;
+    position:absolute;
+    right:-20px;
+    top: 50%;
+}
+.container:nth-child(odd) .bgImg .yt{
+    width: 70px;
+    height: 50px;
+    position:absolute;
+    left:-20px;
+    bottom: 50%;
+}
+.bgImg .yt img{
+    width: 70px;
+    height: 60px;
+}
+
+.container .empty{
+    width: 600px;
+    height: 350px;
+    margin: 40px 0 auto auto;
+    background-color: rgb(224, 224, 224);
+}
+.container:nth-child(odd) .empty{
+    width: 600px;
+    height: 350px;
+    margin: 40px auto auto 500px;
+    background-color: rgb(224, 224, 224);
+}
+    </style>
+</head>
+<body>
+    <div class="problem">
+        <ol>
+            <li>不可以直接使用li，语义很重要！直接用li的语义是什么？？ol/ul呢？</li>
+            <li>点点后面的字怎么可以文绕图？ 要一起缩排！</li>
+            <li>点点除了li还可以用图片做</li>
+            <li>放大后，container里面的东西没办法是一块（不要用w100%，而是固定的宽960px）</li>
+        </ol>
+    </div>
+    <br>
+    <div class="Teachers">
+        <ol>
+            <li>整个container用section/article</li>
+            <li>container里面分成3个部分（01区，图片区，主要内容区）</li>
+            <li>01区块：分成2块（标题，标题内容），在标题那边利用span把2个不同的字体分开来个别设定（h2包着）</li>
+            <li>图片区：主要内容只有车，灰色的部分再用偏移跑出去就好了</li>
+            <li>用flex col放下来后判断里面区块（横向）的宽度大约是多少再去设定会比较好</li>
+            <li>图片区宽度：960px的2/3；包着图片的容器和图片（车）都要设宽度为多少（100%）</li>
+            <li>车和youtue的标签用margin-right：-8.33333%用出来（8.33333）</li>
+            <li>把01区块里面的黑色部分设absolute，下面的图片就会跑上去贴齐红色了（整个标题区块是relative）</li>
+            <li>记得标题的黑色部分要</li>
+            <li>图片的宽度是3/4，所以空位是1/4，我想把1/4分成：3份，2份左，1份右（就是分好后用这样分法去计算空间是多少，不是用猜的）</li>
+            <li>最下面的文字区块在把它relative后向上跑上去就好了（top：2em）</li>
+            <li>最后在把even的东西做相反就好了</li>
+            <li>图片后面的的灰色区块在做absolute定图片的右上角（要凸出去用-）</li>
+            <li>图片再用z-index去调整上下的位置</li>
+            <li>把“我们做了这些革新的”的那行里面做成2个区块，flex row</li>
+            <li>下面文字区块的红色横线可用1px的div做出来 ，然后用flex-grow把剩余的空间填满</li>
+            <li>小红点的做法1) 利用假图去生成红的圆点（bg-img+不要重复(bg-repeat:no-repeat)+位置background-position：0.4em 0.6em）最后再把整个p paddingleft:1em就可以对其圆点了</li>
+            <li>小红点的做法2) 用伪元素before去加入点点（content:'特殊符号'+text-indent (一个是before里面的东西要出去（-1em），before的父类不动（0） ) 和对其左边排好padding-left</li>
+        </ol>
+    </div>
+    <div class="BigTitle">
+        <h1>五大優勢</h1>
+        <div class="nav">
+            <button>操控樂趣</button>
+            <button>安全守護</button>
+            <button>乘坐舒適</button>
+            <button>以人為本</button>
+            <button>引以為傲</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="box">
+            <section class="reason">
+                <div class="title">
+                    <p>01</p>
+                    <h2>操控樂趣</h2>
+                </div>
+                <div class="describe">
+                    <h3>人人滿意的駕駛體驗</h3>
+                    <p>見到推動短信人士兩個大哥組合，朋友發佈日期該公司可是傳說合作相當，表情出售豐原崗位保證一顆住宅接口進行回去一位，相機豐。</p>
+                </div>
+            </section>
+            <section class="explain">
+                <h3>因為我們做了這些革新&nbsp;&nbsp;————————————————————————————</h3>
+                <content>
+                    <p>低重心設計</p>
+                    <li>透過低重心設計，不僅呈現更低伏的外觀，更能減少車身側傾，保持高速行駛穩定性</li>
+                </content>
+                <content>
+                    <p>車體剛性強化</p>
+                    <li>車身結構採用超高強度鋼材，提高車輛穩定性，同時藉由鐳射強化焊接技術，大幅增加焊點數量，提升車身抗扭剛性，強化駕駛穩定性及安全性。</li>
+                </content>
+                <content>
+                    <p>四輪獨立懸吊</p>
+                    <li>搭載全新四輪獨立懸吊設定，透過懸吊的高承載強度，保持輪胎抓地力，同時兼顧轉向靈敏度與清晰路感回饋，提升駕駛樂趣</li>
+                </content>
+            </section>
+        </div>
+        <div class="bgImg">
+            <div class="yt">
+                <a href="#"><img src="ToyotaImg/YT.png" alt="YouTube"></a>
+            </div>
+        </div>
+        <div class="empty"></div>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <section class="reason">
+                <div class="title">
+                    <p>02</p>
+                    <h2>安全守護</h2>
+                </div>
+                <div class="describe">
+                    <h3>行車更安心的高剛性車體</h3>
+                    <p>您的愛車會妥善保護您，強悍穩固的車身可使您完全無慮。世界級的安全功能讓您輕鬆自如享受旅程、毫無後顧之憂。</p>
+                </div>
+            </section>
+            <section class="explain">
+                <h3>因為我們做了這些革新&nbsp;&nbsp;————————————————————————————</h3>
+                <content>
+                    <p>主動安全</p>
+                    <li>以現金的TSS系統，主動偵測路況，輔助駕駛判斷路況並維持行車安全。</li>
+                </content>
+                <content>
+                    <p>被動安全</p>
+                    <li>兼顧的高剛性車體，使用熱沖壓材料的高強度抗扭鋼板，強化座艙對意外事故的保護力。</li>
+                </content>
+            </section>
+        </div>
+        <div class="bgImg">
+            <div class="yt">
+                <a href="#"><img src="ToyotaImg/YT.png" alt="YouTube"></a>
+            </div>
+        </div>
+        <div class="empty"></div>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <section class="reason">
+                <div class="title">
+                    <p>03</p>
+                    <h2>乘坐舒適</h2>
+                </div>
+                <div class="describe">
+                    <h3>令人放鬆舒適的車室空間</h3>
+                    <p>車室空間設計著重人體工學，透過方向盤、踏板等位置優化，追求更舒適的駕駛位置，並以新型座椅設計，提高座椅包覆性，致力實現長途駕駛不疲憊的舒適駕馭體驗。</p>
+                </div>
+            </section>
+            <section class="explain">
+                <h3>因為我們做了這些革新&nbsp;&nbsp;————————————————————————————</h3>
+                <content>
+                    <p>駕馭位置最佳化</p>
+                    <li>針對駕馭位置進行徹底的修改，讓駕馭者可如同握手般自然且舒適地操控方向盤。</li>
+                </content>
+                <content>
+                    <p>駕馭視野佳</p>
+                    <li>考量駕馭坐進車內的高度，透過錢擋風玻璃位置的調整，達到盲區極小化，使駕馭視野更開闊，同步提升駕馭安全。</li>
+                </content>
+                <content>
+                    <p>四輪獨立懸吊</p>
+                    <li>採用最新三層結構的隔音材料，與引擎、變速箱的零件改革，將座艙的震動抑制在最小化，提供乘客舒適安靜的感受。</li>
+                </content>
+            </section>
+        </div>
+        <div class="bgImg">
+            <div class="yt">
+                <a href="#"><img src="ToyotaImg/YT.png" alt="YouTube"></a>
+            </div>
+        </div>
+        <div class="empty"></div>
+    </div>
+    
+    <div class="container">
+        <div class="box">
+            <section class="reason">
+                <div class="title">
+                    <p>04</p>
+                    <h2>以人為本</h2>
+                </div>
+                <div class="describe">
+                    <h3>使用者導向的貼心設計</h3>
+                    <p>藉由高度人性化的界面整合、傳遞車輛資訊，豐富日常駕駛體驗。從提升油耗表現到行李廂空間最適化，均細心考量，更加貼近使用者真正所需與習慣，並給予及時回應。</p>
+                </div>
+            </section>
+            <section class="explain">
+                <h3>因為我們做了這些革新&nbsp;&nbsp;————————————————————————————</h3>
+                <content>
+                    <p>優異油耗表現</p>
+                    <li>以AURIS為例，更強勁的高效引擎將熱效率提升至40%，達到世界級水準，屢屢突破燃油效率新境界。</li>
+                </content>
+                <content>
+                    <p>行李廂空間最適化</p>
+                    <li>以PRIUS為例，透過將電池位置移到後座下方，讓行李廂擁有更大空間。</li>
+                </content>
+            </section>
+        </div>
+        <div class="bgImg">
+            <div class="yt">
+                <a href="#"><img src="ToyotaImg/YT.png" alt="YouTube"></a>
+            </div>
+        </div>
+        <div class="empty"></div>
+    </div>  
+
+    <div class="container">
+        <div class="box">
+            <section class="reason">
+                <div class="title">
+                    <p>05</p>
+                    <h2>引以為傲</h2>
+                </div>
+                <div class="describe">
+                    <h3>極具吸引力的精心設計</h3>
+                    <p>TNGA車款擁有讓人忍不住回頭的新潮外觀、讓駕駛充滿著小的駕馭快感！不僅讓車主能展現個人風格，也能讓擁有者都能引以為傲。</p>
+                </div>
+            </section>
+            <section class="explain">
+                <h3>因為我們做了這些革新&nbsp;&nbsp;————————————————————————————</h3>
+                <content>
+                    <p>設計概念</p>
+                    <li>TNGA低重心設計，不僅呈現更低伏的運動外觀，更講究高品質內裝的一致性。</li>
+                </content>
+                <content>
+                    <p>環保概念</p>
+                    <li>為了對環境保護盡一份心力，我們全面提升傳統引擎、變速箱與油電複合動力的動力效能。</li>
+                </content>
+            </section>
+        </div>
+        <div class="bgImg">
+            <div class="yt">
+                <a href="#"><img src="ToyotaImg/YT.png" alt="YouTube"></a>
+            </div>
+        </div>
+        <div class="empty"></div>
+    </div> 
+</html>

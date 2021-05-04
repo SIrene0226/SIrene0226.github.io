@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <style>
+        .card {
+            border: 1px solid black;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .headshot {
+            overflow: hidden;
+        }
+        
+        .card-title {
+            color: white;
+            background-color: black;
+            display: inline-block;
+            border-radius: 5px;
+            padding: 5px 15px 5px 15px;
+        }
+        
+        .card-body {
+            background-color: #ffbf67;
+        }
+        
+        .card:hover {
+            box-shadow: 8px 8px 15px #808080;
+            transform: translate(5px, 5px);
+        }
+        
+        .card:hover img {
+            transform: scale(1.2);
+            transition: transform 0.5s;
+        }
+        
+        .card:not(:hover) img {
+            transform: scale(1, 1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover .card-body {
+            background-color: lightgreen !important;
+        }
+        
+        .card:hover .card-title {
+            color: black;
+            background-color: white !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='container-fluid'>
+        <div class='jumbotron bg-info'>
+            <h1>Lol Character Card Template</h1>
+        </div>
+        
+        <div class='row'>
+            
+        </div>
+    </div>
+    
+    
+    <template id='cardLol'>
+        <div class="card" style="width: 18rem;">
+            <img src="" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary" id="describ">詳細說明</a>
+                <a href="#" class="btn btn-primary" id="video">影片</a>
+            </div>
+        </div>
+    </template>
+    
+    <!-- Modal ,第一次用最好一開始就測試來確定是沒問題了後再開始修改！ -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <img id="LolImage" src="" alt="">
+                <h5 id="description" class=""></h5>
+                <h5 id="info" class=""></h5>
+                <ul id="status">
+                    <li id="hp"></li>
+                    <li id="ms"></li>
+                    <li id="am"></li>
+                    <li id="sb"></li>
+                    <li id="ar"></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal fade" id="VideoModal" tabindex="-1" aria-labelledby="VideoModalLabel" aria-hidden="true" style="width: ;">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="VideoModalLabel">Video</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <iframe width="450" height="255" src="https://www.youtube.com/embed/pK4VLNk7uBc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+    
+    <script type='module'>
+        import { $g } from '/helpers.js';
+        
+        const url='https://ddragon.leagueoflegends.com/cdn/10.22.1/data/zh_TW/champion.json';
+        
+        let xhr = new XMLHttpRequest();
+        let row=$g('.row');
+
+        xhr.onload=function(){
+            let card = $g('#cardLol');
+
+            if(xhr.readyState==4 && xhr.status==200){
+                let lolArray =JSON.parse(this.responseText);
+                let LolArray = Object.values(lolArray.data);
+                
+                LolArray.forEach((character,index)=>{
+                    
+                    let cloneContent = card.content.cloneNode(true);
+                    cloneContent.querySelector('h5').innerText = character.id+' - '+character.name;
+                    cloneContent.querySelector('p').innerText = character.title;
+                    cloneContent.querySelector('img').src=`https://cdngarenanow-a.akamaihd.net/games/lol/2020/LOLwebsite/champion/${character.id}_0.jpg`;
+                    cloneContent.querySelector('#describ').addEventListener('click',function(){
+                        this.setAttribute('data-toggle','modal');
+                        this.setAttribute('data-target','#exampleModal');
+
+                        let modal=$g('#exampleModal');
+                        modal.querySelector('h5').innerText=character.title;
+                        modal.querySelector('#LolImage').src = `https://cdngarenanow-a.akamaihd.net/games/lol/2020/LOLwebsite/champion/${character.id}_0.jpg`;
+
+                        modal.querySelector('#description').innerText = character.blurb;
+
+                        modal.querySelector('#info').innerHTML='<u>角色數值 :</u>'
+                        modal.querySelector('#hp').innerText='HP : '+character.stats.hp;
+                        modal.querySelector('#ms').innerText='Move Speed : '+character.stats.movespeed;
+                        modal.querySelector('#am').innerText='Armor : '+character.stats.armor;
+                        modal.querySelector('#sb').innerText='Spell Block : '+character.stats.spellblock;
+                        modal.querySelector('#ar').innerText='Attack Range : '+character.stats.attackrange;
+                    });
+
+                    cloneContent.querySelector('#video').addEventListener('click',function(){
+                        this.setAttribute('data-toggle','modal');
+                        this.setAttribute('data-target','#VideoModal');
+                        
+                    });
+
+                    row.append(cloneContent);
+                });
+            }
+            else{
+                
+                alert('發生錯誤，HTTP response代碼：'+ xhr.status);
+            }
+        }
+        xhr.open('GET',url);//來請求資料
+        xhr.send();//送出非同步的請求
+    </script>
+</body>
+
+</html>
