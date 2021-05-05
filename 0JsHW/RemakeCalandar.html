@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <link rel="shortcut icon" href="#"/>
+        <!-- FontAwesome -->
+        <script src="https://kit.fontawesome.com/9eb6267f55.js" crossorigin="anonymous"></script>
+        <title>Hello, Calander!</title>
+        <style>
+            .button{
+                font-size: 30px;
+                width: 90vw;
+                margin:50px auto 20px;
+                display: flex;
+                justify-content: space-between;
+            }
+            table{
+                width: 90vw;
+                height: 80vh;
+                margin:auto;
+            }
+            thead th, tbody td{
+                border-collapse: initial;
+                border: 1px solid grey;
+            }
+            #Title th{
+                /* column-span: 7; */
+                text-align: center;
+            }
+            tr#Body{
+                text-align: center;
+            }
+            #Body th{
+                flex-grow: 1;
+            }
+    
+        </style>
+    </head>
+<body>
+    <div class="button">
+        <i class="fas fa-arrow-alt-circle-left" onclick="MinMonth(year,month,thisDate)"></i>
+        <i class="fas fa-arrow-alt-circle-right" onclick="AddMonth(year,month,thisDate)"></i>
+    </div>
+    <table>
+        <thead>
+            <tr id="Title"></tr>
+            <tr id="weekTitle"></tr>
+        </thead>
+        <tbody id="Body"></tbody>
+    </table>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <script>
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const dayNames=['日','一','二','三','四','五','六'];
+
+        let year = new Date().getFullYear();
+        let month = new Date().getMonth();//0代表1月
+        let thisDate = new Date().getDate();//getDate日期; getDay星期
+        let today = year+'-'+month+'-'+thisDate;
+        DayInWeek();
+
+        createCalandar(year,month,thisDate,daysInMonth(new Date().getFullYear(), new Date().getMonth()));
+
+        function setDate(y, m, d){
+            year=y;
+            month=m;
+        }
+
+        function DayInWeek(){
+            let weekTitle = document.getElementById('weekTitle');
+            dayNames.forEach((day)=>{
+                let th = document.createElement('th');
+                th.innerText=day;
+                weekTitle.appendChild(th);
+            });
+        }
+
+        function AddMonth(year, month, date){
+            // console.log('last: '+month);
+            month++;
+            // console.log('new'+month);
+            if(month>11){
+                month=0;
+                year++;
+            }
+            let totalDays = daysInMonth(year, month);
+            createCalandar(year, month, date, totalDays);
+        }
+
+        function MinMonth(year, month, date){
+            month--;
+            if(month<0){
+                month=11;
+                year--;
+            }
+            let totalDays = daysInMonth(year, month);
+            createCalandar(year, month, date, totalDays);
+        }
+
+        //計算該月的天數
+        function daysInMonth(year, month){
+            return new Date(year, month, 0).getDate();
+        }
+
+        function createCalandar(year, month, date, totalDays){
+            //每次都要把上一个的日历清掉
+            let Body = document.getElementById("Body");
+            Body.innerHTML='';
+
+            let Title = document.getElementById("Title");
+            Title.innerHTML=`<th  colspan="7">${year} ${monthNames[month]}</th>`;
+
+            let dateInCalander=1;
+            //日历最多只有6行（横）
+            for(let i=0;i<=5;i++){
+                let tr = document.createElement('tr');
+                //一行只有7列
+                for(let j=0;j<=6;j++){
+                    let td = document.createElement('td');
+                    //month+1是因为现在的月份还是-1的状态
+                    let runDay=new Date(`${year} ${month+1} ${dateInCalander}`).getDay();
+
+                    if(runDay==j && dateInCalander<=totalDays){
+                        td.innerText=dateInCalander;
+
+                        if(dateInCalander==date){
+                            td.style.backgroundColor='pink';
+                        }
+
+                        dateInCalander++;
+                    }
+                    tr.appendChild(td);
+                }
+                Body.appendChild(tr);
+            }
+            setDate(year, month, totalDays);
+            // debugger;
+        }
+    </script>
+</body>
+</html>
