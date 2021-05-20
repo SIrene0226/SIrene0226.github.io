@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/9eb6267f55.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../0CssHW/cssRest.css">
+    <link rel="stylesheet" href="search.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <div class="search-bar">
+            <div class="nav-item">
+                <i class="fas fa-search"></i>
+                <div class="choose-info city-info">
+                    <p id="city-name">台南市</p>
+                    <p id="place-left">794間住宿還有空房</p>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <div class="search-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="choose-info">
+                        <p id="checkIn-date">2021年5月17日</p>
+                        <p id="date-description">週一</p>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="search-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="choose-info">
+                        <p id="checkOut-date">2021年5月19日</p>
+                        <p id="date-description">週三</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <i class="fas fa-user-friends"></i>
+                <div class="choose-info person-info">
+                    <p id="adult-value">2位大人</p>
+                    <p id="room-value">1間客房</p>
+                </div>
+                <i class="fas fa-angle-down"></i>
+            </div>
+            <button type="button" class="btn btn-primary btn-search">搜出好價</button>
+        </div>
+    </nav>
+    <div class="filter-bar">
+        <div class="filter-container">
+            <div class="array-list">
+                <p>篩選條件</p>
+                    <div class="array-item "><!--btn dropdown-toggle  -->
+                    <i class="fas fa-tags"></i>
+                    <p>價格</p>
+                    <i class="fas fa-caret-down"></i>
+                    
+                </div>
+                <div class="array-item">
+                    <i class="fas fa-star"></i>
+                    <p>星級評等</p>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="array-item">
+                    <p>付款方式</p>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="array-item">
+                    <p>顯示全部</p>
+                    <i class="fas fa-caret-down"></i>
+                </div>
+            </div>
+            <form>
+                <button><i class="fas fa-search"></i></button>
+                <input type="search" placeholder="想搜什麼就搜什麼">
+            </form>
+        </div>
+        <!-- <h4>篩選條件</h4>
+        <ul class="navbar">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    價格
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </li>
+        </ul> -->
+    </div>
+    <div class="main-body">
+        <div class="side-menu">
+            <div class="map">
+                <img src="https://cdn6.agoda.net/images/MAPS-1213/default/bkg-map-entry.svg" alt="地图">
+                <!-- <img src="https://cdn6.agoda.net/images/MAPS-1213/default/img-map-pin-red.svg" alt="地标"> -->
+                <div class="map-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>地圖找房</p>
+                </div>
+            </div>
+            <div class="from-list">
+                <div class="from-distance">
+                    <p>距離市中心</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="center">
+                        <label class="form-check-label" for="center">
+                            位於市中心(327)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="less-2km" checked>
+                        <label class="form-check-label" for="less-2km">
+                            距市中心2公里內(238)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="2-5km">
+                        <label class="form-check-label" for="2-5km">
+                            距市中心2-5公里(127)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="5-10km" checked>
+                        <label class="form-check-label" for="5-10km">
+                            距市中心5-10公里(24)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="more-10km" checked>
+                        <label class="form-check-label" for="more-10km">
+                            距市中心10公里以上(61)
+                        </label>
+                    </div>
+                </div>
+                <!-- <div class="from-area">
+                    <p>區域(要做嗎？)</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="center">
+                        <label class="form-check-label" for="center">
+                            <p><span>台南市</span>(469)</p>
+                            <p>
+                                <i class="fas fa-tag"></i>
+                                NT$<span>2602</span>
+                            </p>
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="less-2km" checked>
+                        <label class="form-check-label" for="less-2km">
+                            距市中心2公里內(238)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="2-5km">
+                        <label class="form-check-label" for="2-5km">
+                            距市中心2-5公里(127)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="5-10km" checked>
+                        <label class="form-check-label" for="5-10km">
+                            距市中心5-10公里(24)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="more-10km" checked>
+                        <label class="form-check-label" for="more-10km">
+                            距市中心10公里以上(61)
+                        </label>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="infomation">
+            <div class="card">
+                <div class="img">
+                    <img src="https://picsum.photos/id/684/200/100" alt="">
+                    <div class="small-img">
+                        <img src="https://picsum.photos/id/685/50/33" alt="">
+                        <img src="https://picsum.photos/id/685/50/33" alt="">
+                        <img src="https://picsum.photos/id/685/50/33" alt="">
+                        <img src="https://picsum.photos/id/685/50/33" alt="">
+                    </div>
+                </div>
+                <div class="detail">
+                    <a href="#">東寧文旅(DongNing Atlas Hotel)</a>
+                    <div class="small-rank">
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>台南市, 台南市 - 位於市中心</p>
+                        </div>
+                    </div>
+                    <div class="include-list">
+                        <p class="Breakfast">早餐</p>
+                    </div>
+                    <div class="tag-list">
+                        <i class="fas fa-money-bill-alt"></i>
+                        <p>價格比同區域其他住宿低</p>
+                    </div>
+                    <div class="advantage">
+                        <i class="far fa-credit-card"></i>
+                        <p>免信用卡訂房</p>
+                    </div>
+                </div>
+                <div class="rank">
+                    <div class="point">
+                        <div class="comment">
+                            <p>很讚</p>
+                            <p><span>10,237</span> 份評鑑</p>
+                            <p>地點 <span>9.0</span></p>
+                        </div>
+                        <div class="icon">
+                            <p>8.5</p>
+                        </div>
+                    </div>
+                    <div class="offer">
+                        <p>只剩<span>1</span>間房可享<span>34</span>％優惠</p>
+                    </div>
+                    <div class="price">
+                        <p>每晚含稅價</p>
+                        <del>1,918</del>
+                        <ins>NT$<span>1,267</span></ins>
+                    </div>
+                    <button class="btn btn-primary">
+                        查看空房情況
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">首頁</a></li>
+            <li class="breadcrumb-item"><a href="#">全球各地(2,534,431)</a></li>
+            <li class="breadcrumb-item"><a href="#">台灣(17,302)</a></li>
+            <li class="breadcrumb-item"><a href="#">台南市(0)</a></li>
+            <li class="breadcrumb-item active" aria-current="page">台南市(1422)</li>
+        </ol>
+    </nav>
+
+    <footer>
+        <div class="footer-link">
+            <div class="customer-service">
+                <h4>客服中心</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">服務中心</a></li>
+                    <li><a href="#">常見問題</a></li>
+                    <li><a href="#">隱私權政策</a></li>
+                    <li><a href="#">服務條款</a></li>
+                </ul>
+            </div>
+            <div class="about-us">
+                <h4>關於我們</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">新聞報導</a></li>
+                    <li><a href="#">旅遊部落格</a></li>
+                </ul>
+            </div>
+            <div class="destination">
+                <h4>目的地</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#">地區</a></li>
+                    <li><a href="#">城市</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-power">
+            <div class="copy-right">
+                <p>本網站內容由&copy; 2021 Build School春季班 保留所有權利</p>
+                <p>Agoda.com隸屬於全球線上旅遊相關事業的領導品牌Booking Holdings集團。</p>
+            </div>
+            <div class="partner">
+                <img src="https://cdn6.agoda.net/images/MVC/default/agoda-logo-v2.png" alt="">
+                <img src="https://cdn6.agoda.net/images/MVC/default/agoda-logo-v2.png" alt="">
+                <img src="https://cdn6.agoda.net/images/MVC/default/agoda-logo-v2.png" alt="">
+            </div>
+        </div>
+    </footer> -->
+</body>
+</html>
