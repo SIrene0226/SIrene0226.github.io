@@ -11,13 +11,14 @@ nav .search-bar,
     display: flex;
     margin: auto;
 }
-nav .nav-item{
+.search-bar .nav-item{
     border-radius: 5px;
     background-color: #fff;
     width: 30%;
 }
 nav .nav-item,
-nav .nav-item .search-date{
+nav .nav-item .search-date,
+nav .nav-item option{
     display: flex;
     align-items: center;
 }
@@ -51,6 +52,9 @@ nav .nav-item:nth-child(3) div{
     font-size: 20px;
     margin: auto 10px;
 } 
+.nav-item select{
+    border: none;
+}
 
 .filter-bar{
     box-shadow: 0 3px 10px rgb(218, 218, 218);
@@ -66,7 +70,7 @@ nav .nav-item:nth-child(3) div{
     font-size: 16px;
     align-items: center;
 }
-.filter-container .array-list .array-item,
+.filter-container .array-list .array-item .dropdown-btn ,
 .filter-container form{
     margin: 15px 2px;
     font-size: 16px ;
@@ -74,7 +78,7 @@ nav .nav-item:nth-child(3) div{
 .filter-container form input:focus{
     outline: none;
 }
-.filter-container .array-list .array-item{
+.filter-container .array-list .array-item .dropdown-btn{
     background-color: #1F264C;
     border-radius: 100px;
     color: white;
@@ -84,9 +88,27 @@ nav .nav-item:nth-child(3) div{
 .filter-container .array-list p{
     font-weight: bold;
 }
-.filter-container .array-list .array-item p{
+.filter-container .array-list .array-item .dropdown-btn p{
     margin: 0 8px;
     font-weight: normal;
+}
+.filter-container .array-list .array-item .dropdown-menu{
+    /* margin-top: 200px; */
+    /* width: 300px;
+    height: 300px; */
+    padding: 15px 10px;
+}
+.filter-container .array-list .array-item .dropdown-menu p{
+    font-weight: normal;
+}
+.filter-container .array-list .array-item .dropdown-menu li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 0;
+}
+.filter-container .array-list .array-item .dropdown-menu li input{
+    margin-right: 5px;
 }
 .filter-container form{
     display: flex;
@@ -135,30 +157,79 @@ img{
 .side-menu .map:hover .map-icon p{
     color: #3f9fd6;
 }
-.side-menu .from-distance{
-    margin: 5px 3px 0;
+.side-menu .from-distance,
+.side-menu .from-area{
+    margin: 30px 3px 5px;
     font-size: 16px;
     line-height: 1.25em;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #DDDFE2;
 }
-.side-menu .from-distance p{ 
+.side-menu .from-distance p:first-child,
+.side-menu .from-area p:first-child{ 
     margin: 15px 0;
     font-size: 18px;
-}
-.side-menu .from-distance p,
-.side-menu .from-distance .form-check{
-    /* display: block; */
+    color: #5A5B5B;
 }
 .side-menu .from-distance .form-check{
     min-height: 1rem;
 }
-.side-menu .from-distance .form-check input{
+.side-menu .from-distance .form-check input,
+.side-menu .from-area .form-check input{
     margin-top: 0;
+}
+.side-menu .from-distance .form-check .form-check-label p,
+.side-menu .from-area .form-check .form-check-label p{
+    margin : 0 0 3px ;/*这里的p本身带有margin的设定*/
+    color: #5A5B5B;
+}
+.side-menu .from-area .form-check .form-check-label p i{
+    margin-right: 5px;
+    margin-bottom: 0;
 }
 
 .infomation .card{
     display: flex;
     flex-direction: row;
 }
+.infomation .card .img{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    font-size: 0;/*图片之间的空隙*/
+}
+.infomation .card .img img{
+    max-height: 150px;
+}
+.infomation .card .img .small-img{
+    width: 100%;
+}
+.infomation .card .img .small-img img{
+    width: 25%;
+    box-sizing: border-box;
+    /* vertical-align: bottom; */
+    margin-top: 1px;
+    padding-right: 1px;
+    align-content: flex-end;
+}
+.infomation .card .img .small-img img:nth-child(4){
+    position: relative;
+}
+.see-more{
+    position: absolute; 
+    background:#000; 
+    opacity:.7;
+    width: 80px;
+    z-index: 1;
+    height: 52px;
+    bottom: 0;
+    left: 240px;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    line-height: 50px;/*上下置中*/
+}
+
 .infomation .card .detail{
     flex-grow: 1;
     margin: 10px;
@@ -182,7 +253,6 @@ img{
 .infomation .card .include-list{
     border: 1px solid #28871C;
     color: #28871C;
-
 }
 .infomation .card .detail .small-rank,
 .infomation .card .detail .tag-list,
@@ -217,8 +287,11 @@ img{
     width: 25%;
     text-align: right;
     margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
-.infomation .rank .point{
+/* .infomation .rank .point{
     display: flex;
     flex-direction: row;
     text-align: right;
@@ -242,17 +315,13 @@ img{
     margin: 11px auto;
     text-align: center;
     color: ivory;
-}
+} */
 .infomation .rank .offer{
     color: #B42424;
     background-color: #F9D8D8;
-    margin-top: 15px;
-    margin-right: 0!important;
+    /* margin-top: 15px; */
+    margin-bottom: 5px;
     width: fit-content;
-}
-.infomation .rank .offer p{
-    /* text-align: right; */
-    margin-right: 0!important;
 }
 .infomation .rank .offer,
 .infomation .rank .price{
@@ -269,6 +338,7 @@ img{
 .infomation .rank .price ins{
     font-size: 28px;
     text-decoration: none;
+    margin-top: 10px;
 }
 .infomation .rank .price ins span{
     font-weight: bold;

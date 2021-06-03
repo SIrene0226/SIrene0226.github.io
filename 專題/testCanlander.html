@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <input name="dateStart" id="dateStart" type="text" >
+    <input name="dateEnd" id="dateEnd" type="text" >
+    
+    <input type="text" id="test">
+    <br>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown button
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+    </div>
+    <div class="collapse multi-collapse" id="a">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="other1">
+            <label class="form-check-label" for="other1">
+                <p><span>安平區</span>(<span>112</span>)</p>
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="other1">
+            <label class="form-check-label" for="other1">
+                <p><span>安平區</span>(<span>112</span>)</p>
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="other1">
+            <label class="form-check-label" for="other1">
+                <p><span>安平區</span>(<span>112</span>)</p>
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="other1">
+            <label class="form-check-label" for="other1">
+                <p><span>安平區</span>(<span>112</span>)</p>
+            </label>
+        </div>
+    </div>
+    <a class="btn" data-bs-toggle="collapse" href="#a" role="button" aria-expanded="false" aria-controls="a">Toggle first element</a>
+
+    <ul id="aaa">
+        <li v-for="(equipName, item) in (ABC, DEF)">
+            <input class="form-check-input" type="checkbox" value="" id:equipName>
+            <label class="form-check-label" for:equipName>
+                <p>{{equipName}}({{item}})</p>
+            </label>
+        </li>
+    </ul>
+
+    <!-- boostrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- calander -->
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/moment.js/2.24.0/locale/zh-cn.jss"></script>
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.js"></script>
+
+    <!-- VueJS -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        $(function() {
+            $('input[name="dateStart"]').daterangepicker(
+                { opens:'left' }, 
+                function(start, end, label) {
+                    // console.log("选择了一个新的日期: "+start.format('YYYY-MM-DD') +' to '+end.format('YYYY-MM-DD'));
+                    let s=document.getElementById('dateStart');
+                    let t = document.getElementById('test');
+                    let e=document.getElementById('dateEnd');
+                    // console.log(s.value);
+                    var list=[];
+                    list=s.value.split(" ");
+                    console.log(list);
+            });
+            
+            // e.value=
+        });
+
+        var a = new Vue({
+            el:"#aaa",
+            data:{
+                ABC:[
+                    'a','b','c','d'
+                ],
+                DEF:[
+                    'e','f','g','h'
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

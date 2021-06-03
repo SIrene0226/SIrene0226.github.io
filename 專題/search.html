@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../0CssHW/cssRest.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/9eb6267f55.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../0CssHW/cssRest.css">
-    <link rel="stylesheet" href="search.css">
+    
+    <!-- DateRangePicker -->
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/moment.js/2.24.0/locale/zh-cn.jss"></script>
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.css"/>
+    <link rel="stylesheet" href="search2.css">
     <title>Document</title>
 </head>
 <body>
-    <nav>
+    <nav id="nav">
         <div class="search-bar">
             <div class="nav-item">
                 <i class="fas fa-search"></i>
@@ -42,70 +50,395 @@
             </div>
 
             <div class="nav-item">
-                <i class="fas fa-user-friends"></i>
-                <div class="choose-info person-info">
-                    <p id="adult-value">2位大人</p>
-                    <p id="room-value">1間客房</p>
+                <div id="person-info" class="choose-bar" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                    <i class="fas fa-user-friends"></i>
+                    <div class="choose-info">
+                        <p>2位大人</p>
+                        <p>1间房间</p>
+                    </div>
+                    <i class="fas fa-angle-down"></i>
                 </div>
-                <i class="fas fa-angle-down"></i>
+                <ul class="dropdown-menu" aria-labelledby="filter-price">
+                    <li class="dropdown-item">單人旅遊</li>
+                    <li class="dropdown-item">雙人旅遊</li>
+                    <li class="dropdown-item inputPerson">家庭旅遊</li>
+                    <li class="dropdown-item inputPerson">團體旅遊</li>
+                    <li class="dropdown-item inputPerson">商務旅遊</li>
+                </ul>
             </div>
             <button type="button" class="btn btn-primary btn-search">搜出好價</button>
         </div>
     </nav>
-    <div class="filter-bar">
-        <div class="filter-container">
-            <div class="array-list">
-                <p>篩選條件</p>
-                    <div class="array-item "><!--btn dropdown-toggle  -->
-                    <i class="fas fa-tags"></i>
-                    <p>價格</p>
-                    <i class="fas fa-caret-down"></i>
-                    
+
+    <div id="filter">
+        <div class="filter-bar">
+            <div class="filter-container">
+                <div class="array-list">
+                    <p>篩選條件</p>
+                    <div class="array-item">
+                        <button type="button" id="filter-price" class="btn dropdown-toggle array-item" data-bs-toggle="dropdown" aria-expanded="true">
+                            價格
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="filter-price">
+                            <li id="price-range">
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <p>付款方式</p>
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" value="" id="center">
+                                <label class="form-check-label" for="center">
+                                    <p>到店付款</p>
+                                </label>
+                            </li>
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" value="" id="center">
+                                <label class="form-check-label" for="center">
+                                    <p>免信用卡訂房</p>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="array-item">
+                        <button type="button" id="filter-star" class="btn dropdown-toggle array-item" data-bs-toggle="dropdown" aria-expanded="true">
+                            星級評等
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="filter-star">
+                            <p>星级</p>
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" value="" id="center">
+                                <label class="form-check-label" for="center">
+                                    <p>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </p>
+                                </label>
+                            </li>
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" value="" id="center">
+                                <label class="form-check-label" for="center">
+                                    <p>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </p>
+                                </label>
+                            </li>
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" value="" id="center">
+                                <label class="form-check-label" for="center">
+                                    <p>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </p>
+                                </label>
+                            </li>
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" value="" id="center">
+                                <label class="form-check-label" for="center">
+                                    <p>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </p>
+                                </label>
+                            </li>
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" value="" id="center">
+                                <label class="form-check-label" for="center">
+                                    <p>
+                                        <i class="fas fa-star"></i>
+                                    </p>
+                                </label>
+                            </li>
+                            <li class="dropdown-item">
+                                <input class="form-check-input" type="checkbox" value="" id="more-10km" checked>
+                                <label class="form-check-label" for="more-10km">
+                                    <p>尚未標示</p>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="array-item" >
+                        <button type="button" id="openFilter" class="btn dropdown-toggle array-item">
+                            <label for="filter-equipment">设施、房型和服务</label>
+                        </button>
+                    </div>
                 </div>
-                <div class="array-item">
-                    <i class="fas fa-star"></i>
-                    <p>星級評等</p>
-                    <i class="fas fa-caret-down"></i>
+                <form>
+                    <button><i class="fas fa-search"></i></button>
+                    <input type="search" placeholder="想搜什麼就搜什麼">
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 点击Filter出现的侧边栏 -->
+    <div id="filter-equipment">
+        <section class="equipment-box" >
+            <div class="filter-body">
+                <div class="accommodation row">
+                    <p>住宿設施&服務</p>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div><div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div><div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
+                    <div class="form-list col-4">
+                        <input class="form-check-input" type="checkbox" value="" id="swim">
+                        <label class="form-check-label" for="swim">
+                            <p>游泳池(123)</p>
+                        </label>
+                    </div>
                 </div>
-                <div class="array-item">
-                    <p>付款方式</p>
-                    <i class="fas fa-caret-down"></i>
+                <hr class="dropdown-divider">
+                <div class="room row">
+                        <p>客房設施/服務</p>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
                 </div>
-                <div class="array-item">
-                    <p>顯示全部</p>
-                    <i class="fas fa-caret-down"></i>
+                <hr class="dropdown-divider">
+                <div class="bed row">
+                        <p>床型</p>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                </div>
+                <hr class="dropdown-divider">
+                <div class="roomOffer row">
+                        <p>房型優惠</p>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
+                        <div class="form-list col-4">
+                            <input class="form-check-input" type="checkbox" value="" id="swim">
+                            <label class="form-check-label" for="swim">
+                                <p>游泳池(123)</p>
+                            </label>
+                        </div>
                 </div>
             </div>
-            <form>
-                <button><i class="fas fa-search"></i></button>
-                <input type="search" placeholder="想搜什麼就搜什麼">
-            </form>
-        </div>
-        <!-- <h4>篩選條件</h4>
-        <ul class="navbar">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    價格
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-            </li>
-        </ul> -->
+            <div class="filter-footer-outlayer">
+                <div class="filter-footer">
+                    <p>搜尋頁面將顯示<span>台南市</span>符合條件的<span>764</span>間住宿</p>
+                    <button type="button" id="clear-filter" class="btn btn-outline-primary">清除</button>
+                    <button type="button" class="btn btn-primary" onclick="closeFilter()">完成</button>
+                </div>
+            </div>
+        </section>
+        <div class="closeFilter" onclick="closeFilter()"></div>
+    </div>
+
     </div>
     <div class="main-body">
         <div class="side-menu">
@@ -123,40 +456,41 @@
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="center">
                         <label class="form-check-label" for="center">
-                            位於市中心(327)
+                            <p>位於市中心(<span>327</span>)</p>
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="less-2km" checked>
+                        <input class="form-check-input" type="checkbox" value="" id="less-2km">
                         <label class="form-check-label" for="less-2km">
-                            距市中心2公里內(238)
+                            <p>距市中心2公里內(<span>238</span>)</p>
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="2-5km">
                         <label class="form-check-label" for="2-5km">
-                            距市中心2-5公里(127)
+                            <p>距市中心2-5公里(<span>127</span>)</p>
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="5-10km" checked>
+                        <input class="form-check-input" type="checkbox" value="" id="5-10km">
                         <label class="form-check-label" for="5-10km">
-                            距市中心5-10公里(24)
+                            <p>距市中心5-10公里(<span>24</span>)</p>
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="more-10km" checked>
+                        <input class="form-check-input" type="checkbox" value="" id="more-10km">
                         <label class="form-check-label" for="more-10km">
-                            距市中心10公里以上(61)
+                            <p>距市中心10公里以上(<span>61</span>)</p>
                         </label>
                     </div>
                 </div>
-                <!-- <div class="from-area">
-                    <p>區域(要做嗎？)</p>
+                <div class="line"></div>
+                <div class="from-area">
+                    <p>區域</p>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="center">
-                        <label class="form-check-label" for="center">
-                            <p><span>台南市</span>(469)</p>
+                        <input class="form-check-input" type="checkbox" value="" id="p1">
+                        <label class="form-check-label" for="p1">
+                            <p><span>台南市</span>(<span>469</span>)</p>
                             <p>
                                 <i class="fas fa-tag"></i>
                                 NT$<span>2602</span>
@@ -164,41 +498,71 @@
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="less-2km" checked>
-                        <label class="form-check-label" for="less-2km">
-                            距市中心2公里內(238)
+                        <input class="form-check-input" type="checkbox" value="" id="p2">
+                        <label class="form-check-label" for="p2">
+                            <p><span>安平區</span>(<span>112</span>)</p>
+                            <p>
+                                <i class="fas fa-tag"></i>
+                                NT$<span>3032</span>
+                            </p>
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="2-5km">
-                        <label class="form-check-label" for="2-5km">
-                            距市中心2-5公里(127)
+                        <input class="form-check-input" type="checkbox" value="" id="p3">
+                        <label class="form-check-label" for="p3">
+                            <p><span>永康區</span>(<span>21</span>)</p>
+                            <p>
+                                <i class="fas fa-tag"></i>
+                                NT$<span>2410</span>
+                            </p>
+                        </label>
+                    </div>
+                    
+                </div>
+                <div class="collapse multi-collapse" id="other-area">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="other1">
+                        <label class="form-check-label" for="other1">
+                            <p><span>安平區</span>(<span>112</span>)</p>
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="5-10km" checked>
-                        <label class="form-check-label" for="5-10km">
-                            距市中心5-10公里(24)
+                        <input class="form-check-input" type="checkbox" value="" id="other1">
+                        <label class="form-check-label" for="other1">
+                            <p><span>安平區</span>(<span>112</span>)</p>
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="more-10km" checked>
-                        <label class="form-check-label" for="more-10km">
-                            距市中心10公里以上(61)
+                        <input class="form-check-input" type="checkbox" value="" id="other1">
+                        <label class="form-check-label" for="other1">
+                            <p><span>安平區</span>(<span>112</span>)</p>
                         </label>
                     </div>
-                </div> -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="other1">
+                        <label class="form-check-label" for="other1">
+                            <p><span>安平區</span>(<span>112</span>)</p>
+                        </label>
+                    </div>
+                </div>
+                <a id="btn-other-area" data-bs-toggle="collapse" href="#other-area"  role="button" aria-expanded="false" aria-controls="other-area">
+                    顯示另外<span>22</span>個 ▼
+                </a>
             </div>
         </div>
+        
         <div class="infomation">
             <div class="card">
                 <div class="img">
-                    <img src="https://picsum.photos/id/684/200/100" alt="">
+                    <img src="//pix6.agoda.net/hotelImages/1158270/-1/e11b2751b3be0ee28417b1b61904cf22.jpg?s=450x450" alt="">
                     <div class="small-img">
                         <img src="https://picsum.photos/id/685/50/33" alt="">
                         <img src="https://picsum.photos/id/685/50/33" alt="">
                         <img src="https://picsum.photos/id/685/50/33" alt="">
                         <img src="https://picsum.photos/id/685/50/33" alt="">
+                        <div class="see-more">
+                            <p>查看更多</p>
+                        </div>
                     </div>
                 </div>
                 <div class="detail">
@@ -227,7 +591,7 @@
                     </div>
                 </div>
                 <div class="rank">
-                    <div class="point">
+                    <!-- <div class="point">
                         <div class="comment">
                             <p>很讚</p>
                             <p><span>10,237</span> 份評鑑</p>
@@ -236,7 +600,7 @@
                         <div class="icon">
                             <p>8.5</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="offer">
                         <p>只剩<span>1</span>間房可享<span>34</span>％優惠</p>
                     </div>
@@ -303,5 +667,87 @@
             </div>
         </div>
     </footer> -->
+    
+    <!-- boostrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- calander -->
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/moment.js/2.24.0/locale/zh-cn.jss"></script>
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.js"></script>
+    <!-- VueJS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        var filter = new Vue({
+            el: '#filter',
+            data:{
+                equipmentsNum:{
+                    swim: 15,
+                    airport: 44,
+                    familyFriendly: 468,
+                    restaurant: 120,
+                    club: 3,
+                    golf: 1,
+                    internet: 606,
+                    gym: 38,
+                    nSmoke: 288,
+                    Smoke: 144,
+                    FFG: 100,
+                    carPark: 317,
+                    frontDesk: 139,
+                    Spa: 17,
+                    petAllow:102,
+                    business: 61
+                },
+                equipmentsName:{
+                    swim: '游泳池',
+                    airport: '機場接送',
+                    familyFriendly: '親子友善住宿',
+                    restaurant: '餐廳',
+                    club: '夜店',
+                    golf: '附設高爾夫球場',
+                    internet: '網路',
+                    gym: '健身房',
+                    nSmoke: '禁菸',
+                    Smoke: '吸菸區',
+                    FFG: '無障礙友善設施',
+                    carPark: '停車場',
+                    frontDesk: '24小時櫃台服務',
+                    Spa: 'Spa桑拿',
+                    petAllow: '可帶寵物',
+                    business: '商務設備'
+                }
+            },
+            method:{
+                
+            }
+        })
+        
+        // JS
+        var openFilter = document.getElementById("openFilter");
+        var filter = document.getElementById("filter-equipment");
+        // var closeFilter = document.getElementsByClassName("closeFilter");
+        var clearfilter = document.getElementById("clear-filter");
+
+        openFilter.addEventListener('click',function(){
+            if(filter.style.visibility == "visible"){
+                filter.style.visibility = "hidden";
+            }
+            else{filter.style.visibility = "visible";}
+        })
+
+        function closeFilter(){
+            if(filter.style.visibility == "visible"){
+                filter.style.visibility = "hidden";
+            }
+        }
+
+        clearfilter.addEventListener('click', function(){
+            var clist = document.getElementsByTagName("input");
+            for (var i = 0; i < clist.length; ++i) { clist[i].checked = false; }
+        })
+    </script>
 </body>
 </html>
